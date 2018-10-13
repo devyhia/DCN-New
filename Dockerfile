@@ -39,7 +39,7 @@ RUN pip install matplotlib
 ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 # move from the weird nvidia versionion in end of .so files
-RUN for f in $(ls *.so.9.0); do ln -s $f $(echo $f | sed 's/\(.*\)\.9\.0/\1/g'); echo "... Linked $f"; done
+RUN for f in $(ls /usr/local/cuda/lib64/*.so.9.0); do ln -s $f $(echo $f | sed 's/\(.*\)\.9\.0/\1/g'); echo "... Linked $f"; done
 
 COPY . /usr/local/src/dec-new
 WORKDIR /usr/local/src/dec-new
