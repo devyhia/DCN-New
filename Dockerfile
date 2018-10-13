@@ -23,10 +23,12 @@ RUN apt-get install -y curl grep sed dpkg && \
 
 RUN conda install matplotlib scikit-learn pillow
 RUN conda install theano
+# Matplotlib requires Cython
+RUN conda install Cython
 #RUN conda install pygpu   # Conda already includes gpu support in their theano formula
 
 # Fix problem with matplotlib verison in conda
-RUN pip uninstall matplotlib
+RUN pip uninstall -y matplotlib
 RUN python -m pip install --upgrade pip
 RUN pip install matplotlib
 
