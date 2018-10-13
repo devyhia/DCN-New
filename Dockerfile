@@ -1,5 +1,6 @@
 FROM nvidia/cuda:9.0-cudnn7-runtime
 
+
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
 
@@ -21,6 +22,9 @@ RUN apt-get install -y curl grep sed dpkg && \
     rm tini.deb && \
     apt-get clean
 
+# Install BLAS / LAPACK for GPU computations
+RUN apt-get install libblas-dev liblapack-dev
+
 RUN conda install matplotlib scikit-learn pillow
 RUN conda install theano
 # Matplotlib requires Cython
@@ -31,6 +35,11 @@ RUN conda install Cython
 RUN pip uninstall -y matplotlib
 RUN python -m pip install --upgrade pip
 RUN pip install matplotlib
+
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+# move from the weird nvidia versionion in end of .so files
+RUN for f in $(ls *.so.9.0); do ln -s $f $(echo $f | sed 's/\(.*\)\.9\.0/\1/g'); echo "... Linked $f"; done
 
 COPY . /usr/local/src/dec-new
 WORKDIR /usr/local/src/dec-new
