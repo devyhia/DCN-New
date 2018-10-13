@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM nvidia/cuda:9.0-base
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
