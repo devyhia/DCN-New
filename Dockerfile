@@ -25,6 +25,9 @@ RUN apt-get install -y curl grep sed dpkg && \
 # Install BLAS / LAPACK for GPU computations
 RUN apt-get install -y libblas-dev liblapack-dev
 
+# Install Vim for on-the-fly edits
+RUN apt-get install -y vim
+
 RUN conda install matplotlib scikit-learn pillow
 RUN conda install theano
 # Matplotlib requires Cython
