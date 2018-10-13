@@ -32,37 +32,37 @@ dataset = path+filename
 #  need to train with 250 epochs of layerwise, and 250 epochs of end-end SAE
 #  to get the initialization file with the following setting, takes a while
 
-# config = {'Init': '',
-#           'lbd':  1,  # reconstruction
-#           'beta': 0,
-#           'output_dir': 'MNIST_results',
-#           'save_file': 'mnist_pre.pkl.gz',
-#           'pretraining_epochs': 250,
-#           'pretrain_lr_base': 0.0001,
-#           'mu': 0.9,
-#           'finetune_lr': 0.0001,
-#           'training_epochs': 250,
-#           'dataset': dataset,
-#           'batch_size': 256,
-#           'nClass': K,
-#           'hidden_dim': [500, 500, 2000, 10],
-#           'diminishing': False}
-
-config = {'Init': 'mnist_pre.pkl.gz',
+config = {'Init': '',
           'lbd':  1,  # reconstruction
-          'beta': 1,
+          'beta': 0,
           'output_dir': 'MNIST_results',
-          'save_file': 'mnist_10.pkl.gz',
+          'save_file': 'mnist_pre.pkl.gz',
           'pretraining_epochs': 250,
           'pretrain_lr_base': 0.0001,
           'mu': 0.9,
           'finetune_lr': 0.0001,
-          'training_epochs': 50,
+          'training_epochs': 250,
           'dataset': dataset,
           'batch_size': 256,
           'nClass': K,
           'hidden_dim': [500, 500, 2000, 10],
           'diminishing': False}
+
+# config = {'Init': 'mnist_pre.pkl.gz',
+#           'lbd':  1,  # reconstruction
+#           'beta': 1,
+#           'output_dir': 'MNIST_results',
+#           'save_file': 'mnist_10.pkl.gz',
+#           'pretraining_epochs': 250,
+#           'pretrain_lr_base': 0.0001,
+#           'mu': 0.9,
+#           'finetune_lr': 0.0001,
+#           'training_epochs': 50,
+#           'dataset': dataset,
+#           'batch_size': 256,
+#           'nClass': K,
+#           'hidden_dim': [500, 500, 2000, 10],
+#           'diminishing': False}
 
 results = []
 for i in range(trials):
