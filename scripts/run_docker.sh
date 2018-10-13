@@ -1,1 +1,1 @@
-docker run --rm -it dcn-new bash
+docker run runtime=nvidia --rm -it dcn-new bash
