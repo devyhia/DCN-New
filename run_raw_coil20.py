@@ -2,7 +2,7 @@
 """
 Created on Sun Oct  9 21:56:33 2016
 
-Perform experiment on Raw-MNIST data
+Perform experiment on Raw-COIL20 data
 
 @author: bo
 """
@@ -32,37 +32,37 @@ dataset = path+filename
 #  need to train with 250 epochs of layerwise, and 250 epochs of end-end SAE
 #  to get the initialization file with the following setting, takes a while
 
-config = {'Init': '',
+# config = {'Init': '',
+          # 'lbd':  1,  # reconstruction
+          # 'beta': 0,
+          # 'output_dir': 'COIL20_results',
+          # 'save_file': 'coil20_pre.pkl.gz',
+          # 'pretraining_epochs': 250,
+          # 'pretrain_lr_base': 0.0001,
+          # 'mu': 0.9,
+          # 'finetune_lr': 0.0001,
+          # 'training_epochs': 250,
+          # 'dataset': dataset,
+          # 'batch_size': 240,
+          # 'nClass': K,
+          # 'hidden_dim': [500, 500, 2000, 10],
+          # 'diminishing': False}
+
+config = {'Init': 'coil20_pre.pkl.gz',
           'lbd':  1,  # reconstruction
-          'beta': 0,
+          'beta': 1,
           'output_dir': 'COIL20_results',
-          'save_file': 'coil20_pre.pkl.gz',
+          'save_file': 'coil20_10.pkl.gz',
           'pretraining_epochs': 250,
           'pretrain_lr_base': 0.0001,
           'mu': 0.9,
           'finetune_lr': 0.0001,
-          'training_epochs': 250,
+          'training_epochs': 50,
           'dataset': dataset,
           'batch_size': 240,
           'nClass': K,
           'hidden_dim': [500, 500, 2000, 10],
           'diminishing': False}
-
-# config = {'Init': 'mnist_pre.pkl.gz',
-#           'lbd':  1,  # reconstruction
-#           'beta': 1,
-#           'output_dir': 'MNIST_results',
-#           'save_file': 'mnist_10.pkl.gz',
-#           'pretraining_epochs': 250,
-#           'pretrain_lr_base': 0.0001,
-#           'mu': 0.9,
-#           'finetune_lr': 0.0001,
-#           'training_epochs': 50,
-#           'dataset': dataset,
-#           'batch_size': 240,
-#           'nClass': K,
-#           'hidden_dim': [500, 500, 2000, 10],
-#           'diminishing': False}
 
 __import__('pdb').set_trace()
 results = []
