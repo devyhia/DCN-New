@@ -650,14 +650,14 @@ def load_data_shared(dataset, batch_size):
     """
     with gzip.open(dataset, 'rb') as f:
         train_x, train_y = cPickle.load(f)
-    N = train_x.shape[0] - train_x.shape[0] % batch_size
+    N = train_x.shape[0]
     # train_x = train_x[0: N]
     # train_y = train_y[0: N]
     
     # shuffling
     numpy.random.seed(0)
     idx = numpy.random.permutation(N)
-    train_x = train_x[idx] * 5.1  # for MNIST
+    train_x = train_x[idx]  # for MNIST
 #    train_x = normalize(train_x)
 #    train_x = train_x
     train_y = train_y[idx]
