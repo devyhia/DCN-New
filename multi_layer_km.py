@@ -856,7 +856,7 @@ def test_SdC(Init='', lbd=.01, output_dir='MNIST_results', save_file = '',
 
     # compute number of minibatches for training, validation and testing
     n_train_samples = train_set_x.get_value(borrow=True).shape[0]
-    n_train_batches = numpy.ceil(n_train_samples / batch_size)
+    n_train_batches = int(numpy.ceil(n_train_samples / batch_size))
 
     # numpy random generator
     # start-snippet-3
