@@ -29,21 +29,15 @@ RUN apt-get install -y curl grep sed dpkg && \
 # Install Vim for on-the-fly edits
 RUN apt-get install -y vim
 
-RUN conda install matplotlib scikit-learn pillow
-RUN conda install theano
+RUN conda install matplotlib scikit-learn pillow theano ipython
+
 # Matplotlib requires Cython
 RUN conda install Cython
-#RUN conda install pygpu   # Conda already includes gpu support in their theano formula
 
 # Fix problem with matplotlib verison in conda
 RUN pip uninstall -y matplotlib
 RUN python -m pip install --upgrade pip
 RUN pip install matplotlib
 
-#ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-
-# move from the weird nvidia versionion in end of .so files
-#RUN for f in $(ls /usr/local/cuda/lib64/*.so.9.0); do ln -s $f $(echo $f | sed 's/\(.*\)\.9\.0/\1/g'); echo "... Linked $f"; done
-
-COPY . /usr/local/src/dec-new
-WORKDIR /usr/local/src/dec-new
+#COPY . /usr/local/src/code
+WORKDIR /usr/local/src/code
