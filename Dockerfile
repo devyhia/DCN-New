@@ -39,5 +39,7 @@ RUN pip uninstall -y matplotlib
 RUN python -m pip install --upgrade pip
 RUN pip install matplotlib
 
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
 #COPY . /usr/local/src/code
 WORKDIR /usr/local/src/code
