@@ -651,9 +651,9 @@ def load_data_shared(dataset, batch_size):
     with gzip.open(dataset, 'rb') as f:
         train_x, train_y = cPickle.load(f)
     N = train_x.shape[0] - train_x.shape[0] % batch_size
-    train_x = train_x[0: N]
-    train_y = train_y[0: N]
-
+    # train_x = train_x[0: N]
+    # train_y = train_y[0: N]
+    
     # shuffling
     numpy.random.seed(0)
     idx = numpy.random.permutation(N)
@@ -1239,7 +1239,7 @@ if __name__ == '__main__':
               'output_dir': 'MNIST_results',
               'save_file': 'mnist_10.pkl.gz',
               'pretraining_epochs': 50,
-              'pretrain_lr': .01,
+              'pretrain_lr_base': .01,
               'mu': 0.9,
               'finetune_lr': 0.05,
               'training_epochs': 50,

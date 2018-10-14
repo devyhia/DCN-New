@@ -33,6 +33,7 @@ RUN conda install matplotlib scikit-learn pillow theano ipython
 
 # Matplotlib requires Cython
 RUN conda install Cython
+RUN pip install pdbpp
 
 # Fix problem with matplotlib verison in conda
 RUN pip uninstall -y matplotlib
