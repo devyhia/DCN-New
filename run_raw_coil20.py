@@ -58,7 +58,7 @@ if args.stage == 'layerwise':
               'diminishing': False}
 
 if args.stage == 'endtoend':
-    config = {'Init': 'coil20_pre.pkl.gz',
+    config = {'Init': 'coil20_pre_{}.pkl.gz'.format(args.dimension),
               'lbd':  1,  # reconstruction
               'beta': 1,
               'output_dir': 'COIL20_results',
