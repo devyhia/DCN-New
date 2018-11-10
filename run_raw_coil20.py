@@ -21,7 +21,9 @@ import argparse
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Run DCN Training on COIL20 dataset')
-    parser.add_argument('--dimension', type=int)
+    parser.add_argument('--dimension', type=int, default=28)
+    parser.add_argument('--training_epochs', type=int, default=50)
+
     return parser.parse_args()
 
 args = parse_arguments()
@@ -64,7 +66,7 @@ config = {'Init': 'coil20_pre.pkl.gz',
           'pretrain_lr_base': 0.0001,
           'mu': 0.9,
           'finetune_lr': 0.0001,
-          'training_epochs': 50,
+          'training_epochs': 250,
           'dataset': dataset,
           'batch_size': 240,
           'nClass': K,
