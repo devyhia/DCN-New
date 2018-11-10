@@ -648,8 +648,11 @@ def load_data_shared(dataset, batch_size):
     Load the dataset and save it as shared-variable to be used by Theano
 
     """
-    with gzip.open(dataset, 'rb') as f:
-        train_x, train_y = cPickle.load(f)
+    # dataset = (numpy file for features, numpy file for labels)
+    features_path, labels_path = dataset
+    train_x = numpy.load(features_path)
+    train_y = numpy.load(labels_path)
+    
     N = train_x.shape[0]
     # train_x = train_x[0: N]
     # train_y = train_y[0: N]
@@ -826,8 +829,8 @@ def test_SdC(Init='', lbd=.01, output_dir='MNIST_results', save_file = '',
     :type training_epochs: int
     :param training_epochs: number of epoch to do optimization
 
-    :type dataset: string
-    :param dataset: path of the pickled dataset
+    :type dataset: (string, string)
+    :param dataset: tuple of (features_path, labels_path)
 
     :type batch_size: int
     :param batch_size: number of data samples in one minibatch

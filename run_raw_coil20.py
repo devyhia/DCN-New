@@ -17,15 +17,22 @@ from sklearn.cluster import KMeans
 from sklearn import metrics
 from multi_layer_km import test_SdC
 from cluster_acc import acc
+import argparse
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Run DCN Training on COIL20 dataset')
+    parser.add_argument('--dimension', type=int)
+    return parser.parse_args()
+
+args = parse_arguments()
 
 K = 20
 trials = 1
 
-filename = 'coil20.pkl.gz'
-path = './data/'
-dataset = path+filename
+features_path = "./data/coil20_features_{}.npy".format(args.dimension)
+labels_path = "./data/coil20_labels_{}.npy".format(args.dimension)
 
-
+dataset = (features_path, labels_path)
 
 # perform DCN
 
