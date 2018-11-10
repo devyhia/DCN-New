@@ -22,7 +22,7 @@ import argparse
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Run DCN Training on COIL20 dataset')
     parser.add_argument('--dimension', type=int, default=28)
-    parser.add_argument('--training_epochs', type=int, default=50)
+    parser.add_argument('--training_epochs', type=int, default=250)
     parser.add_argument('--stage', choices=['layerwise', 'endtoend'])
     parser.add_argument('--labels', type=int, default=20)
     parser.add_argument('--trials', type=int, default=1)
@@ -46,11 +46,11 @@ if args.stage == 'layerwise':
               'beta': 0,
               'output_dir': 'COIL20_results',
               'save_file': 'coil20_pre_{}.pkl.gz'.format(args.dimension),
-              'pretraining_epochs': 250,
+              'pretraining_epochs': args.training_epochs,
               'pretrain_lr_base': 0.0001,
               'mu': 0.9,
               'finetune_lr': 0.0001,
-              'training_epochs': 250,
+              'training_epochs': args.training_epochs,
               'dataset': dataset,
               'batch_size': 240,
               'nClass': args.labels,
@@ -63,11 +63,11 @@ if args.stage == 'endtoend':
               'beta': 1,
               'output_dir': 'COIL20_results',
               'save_file': 'coil20_10_{}.pkl.gz'.format(args.dimension),
-              'pretraining_epochs': 250,
+              'pretraining_epochs': args.training_epochs,
               'pretrain_lr_base': 0.0001,
               'mu': 0.9,
               'finetune_lr': 0.0001,
-              'training_epochs': 250,
+              'training_epochs': args.training_epochs,
               'dataset': dataset,
               'batch_size': 240,
               'nClass': args.labels,
