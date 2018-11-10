@@ -74,7 +74,6 @@ if args.stage == 'endtoend':
               'hidden_dim': [500, 500, 2000, 10],
               'diminishing': False}
 
-__import__('pdb').set_trace()
 results = []
 for i in range(args.trials):
     res_metrics = test_SdC(**config)

@@ -984,8 +984,6 @@ def test_SdC(Init='', lbd=.01, output_dir='MNIST_results', save_file = '',
     # FINETUNING THE MODEL #
     ########################
     def init_cluster(data):
-        __import__('pdb').set_trace()
-
         if clusterModel == 'KM':
             km = KMeans(n_clusters=nClass, n_init=10)
             km.fit(data)
