@@ -1,54 +1,24 @@
-This is an introduction of the code developed for the Deep Clustering Network (DCN). Please direct your emails to 
+# Deep Clustering Network (DCN)
 
-Bo Yang, yang4173@umn.edu
+This work is a modified codebase of: https://github.com/devyhia/DCN-New
 
-if you have troubles running the code, or find any bugs. 
+### What is different?
+1. We added a Dockerfile that contains the environment for which this trains and evaluates.
+2. We added the ability to train the COIL-20 dataset.
+3. We fine-tuned the hyperparameters for the network to obtain the best possible performance on COIL-20 dataset using this network.
 
-Here is the paper: arxiv: https://arxiv.org/pdf/1610.04794v1.pdf
-Bo Yang, Xiao Fu, Nicholas D. Sidiropoulos and Mingyi Hong "Towards K-means-friendly Spaces: Simultaneous Deep Learning and Clustering"
+### How to train the network?
 
-==============================================
-Main files 
-
-run_raw_mnist.py  : Script to reproduce our results on raw-MNIST dataset
-multi_layer_km.py : Main file for defining the network, as well as various utility functions.
-
-You can start running the code by e.g. (on Ubuntu)
-
-$: ./run_raw_mnist.sh
-
---
-More documentations can be found inside each of the above files.
---
-
-==============================================
-Data preparation
-
-The data file should be named like 'something.pkl.gz', i.e., it should be pickled and compressed by gzip, using python code as follow:
-
-"""
-with gzip.open('something.pkl.gz', 'wb') as f:
-    cPickle.dump([train_x, train_y], f, protocol = 0)
-"""
-where train_x and train_y are numpy ndarray with shape
-train_x: (n_samples, n_features)
-train_y: (n_samples, )
-
-==============================================
-
-Main difference compared to previous release
-1) Included the dependent files
-2) Included sample data files
-3) Added theano environment flag in the .sh file
-4) Cleaned up the repo to exclude unnecessary files
-
-==============================================
-Dependencies
-
-Theano   
-scikit-learn
-numpy
-scipy
-
-
-
+1. Install Docker with Nvidia GPU support. This could be done following this tutorial: https://github.com/NVIDIA/nvidia-docker
+2. Build the docker image using the following snippet:
+```
+docker build -t dcn .
+```
+3. Open the docker image (i.e. bash into it).
+```
+docker run --runtime=nvidia --rm dcn bash
+```
+3. Inside the bash, start training the network using the following snippet.
+```
+THEANO_FLAGS='floatX=float32,device=cuda,dnn.enabled=False' python run_raw_coil20.py
+```
