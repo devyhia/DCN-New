@@ -22,3 +22,11 @@ docker run --runtime=nvidia --rm dcn bash
 ```
 THEANO_FLAGS='floatX=float32,device=cuda,dnn.enabled=False' python run_raw_coil20.py
 ```
+
+### Features Generation
+
+The above script is using a pre-made feature files (i.e. *`.npy` files). These files are numpy arrays that has the following format:
+```
+features.shape  ==    (1400, DIM * DIM)
+labels.shape    ==    (1400, 1)
+```
