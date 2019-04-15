@@ -31,6 +31,47 @@ features.shape  ==    (1400, DIM * DIM)
 labels.shape    ==    (1400, 1)
 ```
 
+### Ready-to-use Features
+
+If you don't want to use your own features, I created a list of features and labels that you could directly use for training: https://s3-eu-west-1.amazonaws.com/tum-clustering/tum-clustering.zip
+
+1. Download the features
+```
+curl -OL https://s3-eu-west-1.amazonaws.com/tum-clustering/tum-clustering.zip
+```
+2. Unzip the folder:
+```
+unzip tum-clustering.zip
+```
+
+Here is a print of the folder structure:
+```
+tum-clustering
+|-- data
+|   |-- coil20_features_128.npy
+|   |-- coil20_features_28.npy
+|   |-- coil20_features_32.npy
+|   |-- coil20_features_48.npy
+|   |-- coil20_features_64.npy
+|   |-- coil20_features_96.npy
+|   |-- coil20_labels_128.npy
+|   |-- coil20_labels_28.npy
+|   |-- coil20_labels_32.npy
+|   |-- coil20_labels_48.npy
+|   |-- coil20_labels_64.npy
+|   `-- coil20_labels_96.npy
+`-- pretrain-weights
+    |-- ae_weights_coil20_128.h5
+    |-- ae_weights_coil20_28.h5
+    |-- ae_weights_coil20_32.h5
+    |-- ae_weights_coil20_48.h5
+    |-- ae_weights_coil20_64.h5
+    |-- ae_weights_coil20_96.h5
+    `-- ae_weights_mnist_28.h5
+
+2 directories, 19 files
+```
+
 ## Network fine-tuning
 
 ![Finetune Comparison](dcn-finetune.png)
